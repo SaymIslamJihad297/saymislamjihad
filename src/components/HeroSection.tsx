@@ -5,6 +5,7 @@ import { ChevronDown, Zap, Globe, Shield, Layers, Cpu, Database, Code2, GitBranc
 const HeroSection = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
   const fullText = "Full Stack Developer";
 
   useEffect(() => {
@@ -100,7 +101,6 @@ const HeroSection = () => {
             animate={{ 
               opacity: 1, 
               x: 0, 
-              // y: 0,
               y: [0, -5, 0]
             }}
             transition={{ 
@@ -127,7 +127,6 @@ const HeroSection = () => {
             animate={{ 
               opacity: 1, 
               x: 0, 
-              // y: 0,
               y: [0, -8, 0]
             }}
             transition={{ 
@@ -154,7 +153,6 @@ const HeroSection = () => {
             animate={{ 
               opacity: 1, 
               x: 0, 
-              // y: 0,
               y: [0, -6, 0]
             }}
             transition={{ 
@@ -181,7 +179,6 @@ const HeroSection = () => {
             animate={{ 
               opacity: 1, 
               x: 0, 
-              // y: 0,
               y: [0, -7, 0]
             }}
             transition={{ 
@@ -370,6 +367,261 @@ const HeroSection = () => {
     );
   };
 
+  // Ultra Futuristic Scroll Portal
+  const QuantumScrollPortal = () => {
+    const handleScrollClick = () => {
+      setIsScrolling(true);
+      document.getElementById('about')?.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      setTimeout(() => setIsScrolling(false), 1500);
+    };
+
+    return (
+      <motion.div
+        className="relative flex flex-col items-center cursor-pointer group"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5 }}
+        onClick={handleScrollClick}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        {/* Main Portal Container */}
+        <div className="relative w-20 h-20">
+          {/* Outer Energy Ring */}
+          <motion.div
+            className="absolute inset-0 rounded-full border-2 border-cyan-400/30"
+            animate={{
+              rotate: [0, 360],
+              scale: isScrolling ? [1, 1.5, 1] : [1, 1.1, 1],
+              borderColor: isScrolling 
+                ? ["#06b6d4", "#10b981", "#8b5cf6", "#f59e0b", "#06b6d4"]
+                : ["#06b6d4", "#10b981", "#06b6d4"]
+            }}
+            transition={{
+              rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+              scale: { duration: isScrolling ? 0.8 : 2, repeat: Infinity },
+              borderColor: { duration: isScrolling ? 1.5 : 3, times: isScrolling ? [0, 0.25, 0.5, 0.75, 1] : [0, 0.5, 1], repeat: Infinity }
+            }}
+            style={{
+              boxShadow: "0 0 30px rgba(6, 182, 212, 0.4), inset 0 0 30px rgba(6, 182, 212, 0.1)"
+            }}
+          />
+
+          {/* Middle Energy Ring */}
+          <motion.div
+            className="absolute inset-2 rounded-full border border-emerald-400/50"
+            animate={{
+              rotate: [360, 0],
+              scale: isScrolling ? [1, 1.3, 1] : [1, 1.05, 1],
+              borderColor: isScrolling 
+                ? ["#10b981", "#8b5cf6", "#06b6d4", "#f59e0b", "#10b981"]
+                : ["#10b981", "#8b5cf6", "#10b981"]
+            }}
+            transition={{
+              rotate: { duration: 6, repeat: Infinity, ease: "linear" },
+              scale: { duration: isScrolling ? 0.6 : 2.5, repeat: Infinity },
+              borderColor: { duration: isScrolling ? 1.2 : 4, repeat: Infinity }
+            }}
+            style={{
+              boxShadow: "0 0 20px rgba(16, 185, 129, 0.3)"
+            }}
+          />
+
+          {/* Inner Core */}
+          <motion.div
+            className="absolute inset-4 rounded-full bg-gradient-to-br from-cyan-400/20 via-emerald-400/30 to-purple-400/20 backdrop-blur-sm border border-white/20"
+            animate={{
+              scale: isScrolling ? [1, 1.4, 0.8, 1.2, 1] : [1, 1.1, 1],
+              background: isScrolling 
+                ? [
+                    "radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, rgba(16, 185, 129, 0.3) 50%, rgba(139, 92, 246, 0.2) 100%)",
+                    "radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, rgba(139, 92, 246, 0.3) 50%, rgba(245, 158, 11, 0.2) 100%)",
+                    "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(245, 158, 11, 0.3) 50%, rgba(6, 182, 212, 0.2) 100%)"
+                  ]
+                : [
+                    "radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(16, 185, 129, 0.3) 50%, rgba(139, 92, 246, 0.2) 100%)"
+                  ]
+            }}
+            transition={{
+              scale: { duration: isScrolling ? 1.5 : 3, repeat: Infinity, times: isScrolling ? [0, 0.3, 0.6, 0.8, 1] : [0, 0.5, 1] },
+              background: { duration: isScrolling ? 2 : 4, repeat: Infinity }
+            }}
+            style={{
+              boxShadow: "0 0 40px rgba(6, 182, 212, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.1)"
+            }}
+          >
+            {/* Central Icon */}
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              animate={{
+                rotate: isScrolling ? [0, 180, 360] : [0, 15, -15, 0],
+                scale: isScrolling ? [1, 0.5, 1.3, 1] : [1, 1.1, 1]
+              }}
+              transition={{
+                rotate: { duration: isScrolling ? 1.5 : 4, repeat: Infinity, times: isScrolling ? [0, 0.5, 1] : [0, 0.33, 0.66, 1] },
+                scale: { duration: isScrolling ? 1.5 : 2, repeat: Infinity, times: isScrolling ? [0, 0.3, 0.7, 1] : [0, 0.5, 1] }
+              }}
+            >
+              <ChevronDown 
+                className={`w-6 h-6 transition-colors duration-300 ${
+                  isScrolling ? 'text-yellow-400' : 'text-white group-hover:text-cyan-400'
+                }`} 
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* Quantum Particles */}
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 rounded-full"
+              style={{
+                background: `linear-gradient(45deg, ${
+                  i % 3 === 0 ? '#06b6d4' : i % 3 === 1 ? '#10b981' : '#8b5cf6'
+                })`,
+                left: '50%',
+                top: '50%',
+                transformOrigin: '0 0'
+              }}
+              animate={{
+                rotate: [0, 360],
+                x: isScrolling ? [0, Math.cos(i * 30 * Math.PI / 180) * 60] : [0, Math.cos(i * 30 * Math.PI / 180) * 35],
+                y: isScrolling ? [0, Math.sin(i * 30 * Math.PI / 180) * 60] : [0, Math.sin(i * 30 * Math.PI / 180) * 35],
+                opacity: isScrolling ? [1, 0.3, 1, 0] : [0, 1, 0],
+                scale: isScrolling ? [0, 1.5, 0] : [0, 1, 0]
+              }}
+              transition={{
+                rotate: { duration: 3 + i * 0.2, repeat: Infinity, ease: "linear" },
+                x: { duration: isScrolling ? 1.5 : 4, repeat: Infinity },
+                y: { duration: isScrolling ? 1.5 : 4, repeat: Infinity },
+                opacity: { duration: isScrolling ? 1.5 : 3, repeat: Infinity, delay: i * 0.1 },
+                scale: { duration: isScrolling ? 1.5 : 3, repeat: Infinity, delay: i * 0.1 }
+              }}
+            />
+          ))}
+
+          {/* Energy Waves */}
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={`wave-${i}`}
+              className="absolute inset-0 rounded-full border border-cyan-400/20"
+              animate={{
+                scale: isScrolling ? [1, 2.5 + i * 0.5, 3 + i * 0.5] : [1, 1.5 + i * 0.3, 2 + i * 0.3],
+                opacity: isScrolling ? [0.8, 0.3, 0] : [0.5, 0.2, 0],
+                borderColor: isScrolling 
+                  ? [`hsl(${180 + i * 60}, 70%, 60%)`, `hsl(${240 + i * 60}, 70%, 60%)`, `hsl(${300 + i * 60}, 70%, 60%)`]
+                  : [`hsl(${180 + i * 30}, 50%, 50%)`, `hsl(${210 + i * 30}, 50%, 50%)`]
+              }}
+              transition={{
+                scale: { duration: isScrolling ? 1.5 : 3, repeat: Infinity, delay: i * 0.2 },
+                opacity: { duration: isScrolling ? 1.5 : 3, repeat: Infinity, delay: i * 0.2 },
+                borderColor: { duration: isScrolling ? 1.5 : 2, repeat: Infinity }
+              }}
+            />
+          ))}
+
+          {/* Lightning Bolts */}
+          {isScrolling && [...Array(6)].map((_, i) => (
+            <motion.div
+              key={`lightning-${i}`}
+              className="absolute top-1/2 left-1/2 w-0.5 h-8 bg-gradient-to-b from-yellow-400 via-cyan-400 to-transparent origin-top"
+              style={{
+                transform: `rotate(${i * 60}deg) translateY(-40px)`
+              }}
+              initial={{ scaleY: 0, opacity: 0 }}
+              animate={{
+                scaleY: [0, 1, 0],
+                opacity: [0, 1, 0],
+                background: [
+                  "linear-gradient(to bottom, #facc15, #06b6d4, transparent)",
+                  "linear-gradient(to bottom, #06b6d4, #10b981, transparent)",
+                  "linear-gradient(to bottom, #10b981, #8b5cf6, transparent)"
+                ]
+              }}
+              transition={{
+                scaleY: { duration: 0.3, repeat: 5, delay: i * 0.1 },
+                opacity: { duration: 0.3, repeat: 5, delay: i * 0.1 },
+                background: { duration: 0.3, repeat: 5, delay: i * 0.1 }
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Flowing Data Stream */}
+        <motion.div
+          className="mt-4 flex flex-col items-center"
+          animate={{
+            opacity: isScrolling ? [1, 0.3, 1] : [0.7, 1, 0.7]
+          }}
+          transition={{
+            opacity: { duration: isScrolling ? 0.5 : 2, repeat: Infinity }
+          }}
+        >
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`stream-${i}`}
+              className="w-0.5 h-1 mb-1 rounded-full"
+              style={{
+                background: `linear-gradient(to bottom, ${
+                  ['#06b6d4', '#10b981', '#8b5cf6', '#f59e0b'][i % 4]
+                }, transparent)`
+              }}
+              animate={{
+                opacity: isScrolling ? [0, 1, 0] : [0, 0.8, 0],
+                scaleY: isScrolling ? [0, 2, 0] : [0, 1, 0],
+                y: isScrolling ? [0, 20] : [0, 10]
+              }}
+              transition={{
+                opacity: { duration: isScrolling ? 0.3 : 1.5, repeat: Infinity, delay: i * 0.1 },
+                scaleY: { duration: isScrolling ? 0.3 : 1.5, repeat: Infinity, delay: i * 0.1 },
+                y: { duration: isScrolling ? 0.8 : 2, repeat: Infinity, delay: i * 0.1 }
+              }}
+            />
+          ))}
+        </motion.div>
+
+        {/* Holographic Text */}
+        <motion.div
+          className="mt-2 text-xs font-mono text-cyan-400/80 tracking-wider"
+          animate={{
+            opacity: isScrolling ? [1, 0.3, 1] : [0.6, 1, 0.6],
+            scale: isScrolling ? [1, 1.1, 1] : [1, 1.05, 1],
+            color: isScrolling 
+              ? ["#06b6d4", "#10b981", "#8b5cf6", "#f59e0b", "#06b6d4"]
+              : ["#06b6d4", "#10b981", "#06b6d4"]
+          }}
+          transition={{
+            opacity: { duration: isScrolling ? 0.5 : 1.5, repeat: Infinity },
+            scale: { duration: isScrolling ? 0.5 : 2, repeat: Infinity },
+            color: { duration: isScrolling ? 1.5 : 3, repeat: Infinity }
+          }}
+        >
+          {isScrolling ? 'INITIALIZING...' : 'SCROLL TO EXPLORE'}
+        </motion.div>
+
+        {/* Quantum Field Effect */}
+        <motion.div
+          className="absolute -inset-8 rounded-full opacity-20"
+          style={{
+            background: "radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%)",
+            filter: "blur(10px)"
+          }}
+          animate={{
+            scale: isScrolling ? [1, 2, 1] : [1, 1.2, 1],
+            opacity: isScrolling ? [0.2, 0.6, 0.2] : [0.1, 0.3, 0.1]
+          }}
+          transition={{
+            scale: { duration: isScrolling ? 1.5 : 4, repeat: Infinity },
+            opacity: { duration: isScrolling ? 1.5 : 3, repeat: Infinity }
+          }}
+        />
+      </motion.div>
+    );
+  };
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative">
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
@@ -440,22 +692,10 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5 }}
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="interactive cursor-pointer"
-          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          <ChevronDown className="w-8 h-8 text-gray-400 hover:text-cyan-400 transition-colors" />
-        </motion.div>
-      </motion.div>
+      {/* Quantum Scroll Portal */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <QuantumScrollPortal />
+      </div>
     </section>
   );
 };
