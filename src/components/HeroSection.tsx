@@ -1,0 +1,463 @@
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ChevronDown, Zap, Globe, Shield, Layers, Cpu, Database, Code2, GitBranch, Smartphone, Monitor, Server } from 'lucide-react';
+
+const HeroSection = () => {
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const fullText = "Full Stack Developer";
+
+  useEffect(() => {
+    if (currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(fullText.slice(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+      }, 100);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, fullText]);
+
+  // Futuristic Holographic Interface
+  const HolographicInterface = () => {
+    return (
+      <div className="relative w-96 h-96">
+        {/* Main Holographic Container */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-gray-900/90 backdrop-blur-xl rounded-3xl border-2 overflow-hidden"
+          initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+          animate={{ 
+            opacity: 1, 
+            scale: 1,
+            rotateY: 0,
+            borderColor: ["#00d9ff", "#10b981", "#8b5cf6", "#00d9ff"]
+          }}
+          transition={{ 
+            opacity: { duration: 1 },
+            scale: { duration: 1 },
+            rotateY: { duration: 1 },
+            borderColor: { duration: 4, repeat: Infinity }
+          }}
+          style={{
+            boxShadow: "0 0 50px rgba(0, 217, 255, 0.3), inset 0 0 50px rgba(0, 217, 255, 0.1)"
+          }}
+        >
+          {/* Holographic Grid Background */}
+          <div className="absolute inset-0 opacity-20">
+            <svg width="100%" height="100%" className="absolute inset-0">
+              <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#00d9ff" strokeWidth="0.5" opacity="0.3"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+          </div>
+
+          {/* Central Hexagon Hub */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            <motion.div
+              className="w-20 h-20 border-2 border-cyan-400 relative"
+              style={{
+                clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                background: "linear-gradient(45deg, rgba(6, 182, 212, 0.2), rgba(16, 185, 129, 0.2))"
+              }}
+              animate={{
+                rotate: [0, 360],
+                borderColor: ["#06b6d4", "#10b981", "#8b5cf6", "#06b6d4"]
+              }}
+              transition={{
+                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                borderColor: { duration: 3, repeat: Infinity }
+              }}
+            >
+              <motion.div
+                className="absolute inset-2 border border-emerald-400"
+                style={{
+                  clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                  background: "radial-gradient(circle, rgba(16, 185, 129, 0.3), transparent)"
+                }}
+                animate={{
+                  rotate: [0, -360]
+                }}
+                transition={{
+                  rotate: { duration: 15, repeat: Infinity, ease: "linear" }
+                }}
+              />
+              <Cpu className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 text-cyan-400" />
+            </motion.div>
+          </motion.div>
+
+          {/* Floating Tech Panels */}
+          {/* Frontend Panel */}
+          <motion.div
+            className="absolute top-8 left-8 w-24 h-16 bg-gradient-to-br from-cyan-500/20 to-cyan-600/30 border border-cyan-400/50 rounded-lg backdrop-blur-sm"
+            initial={{ opacity: 0, x: -50, y: -50 }}
+            animate={{ 
+              opacity: 1, 
+              x: 0, 
+              // y: 0,
+              y: [0, -5, 0]
+            }}
+            transition={{ 
+              opacity: { delay: 1 },
+              x: { delay: 1 },
+              y: { delay: 1, y: { duration: 3, repeat: Infinity } }
+            }}
+          >
+            <div className="p-2 h-full flex flex-col items-center justify-center">
+              <Monitor className="w-5 h-5 text-cyan-400 mb-1" />
+              <span className="text-xs text-cyan-300 font-mono">Frontend</span>
+            </div>
+            <motion.div
+              className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-lg opacity-20"
+              animate={{ opacity: [0.2, 0.5, 0.2] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </motion.div>
+
+          {/* Backend Panel */}
+          <motion.div
+            className="absolute top-8 right-8 w-24 h-16 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 border border-emerald-400/50 rounded-lg backdrop-blur-sm"
+            initial={{ opacity: 0, x: 50, y: -50 }}
+            animate={{ 
+              opacity: 1, 
+              x: 0, 
+              // y: 0,
+              y: [0, -8, 0]
+            }}
+            transition={{ 
+              opacity: { delay: 1.2 },
+              x: { delay: 1.2 },
+              y: { delay: 1.2, y: { duration: 3.5, repeat: Infinity } }
+            }}
+          >
+            <div className="p-2 h-full flex flex-col items-center justify-center">
+              <Server className="w-5 h-5 text-emerald-400 mb-1" />
+              <span className="text-xs text-emerald-300 font-mono">Backend</span>
+            </div>
+            <motion.div
+              className="absolute -inset-0.5 bg-gradient-to-r from-emerald-400 to-purple-400 rounded-lg opacity-20"
+              animate={{ opacity: [0.2, 0.5, 0.2] }}
+              transition={{ duration: 2.5, repeat: Infinity }}
+            />
+          </motion.div>
+
+          {/* Database Panel */}
+          <motion.div
+            className="absolute bottom-8 left-8 w-24 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/30 border border-purple-400/50 rounded-lg backdrop-blur-sm"
+            initial={{ opacity: 0, x: -50, y: 50 }}
+            animate={{ 
+              opacity: 1, 
+              x: 0, 
+              // y: 0,
+              y: [0, -6, 0]
+            }}
+            transition={{ 
+              opacity: { delay: 1.4 },
+              x: { delay: 1.4 },
+              y: { delay: 1.4, y: { duration: 2.8, repeat: Infinity } }
+            }}
+          >
+            <div className="p-2 h-full flex flex-col items-center justify-center">
+              <Database className="w-5 h-5 text-purple-400 mb-1" />
+              <span className="text-xs text-purple-300 font-mono">Database</span>
+            </div>
+            <motion.div
+              className="absolute -inset-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 rounded-lg opacity-20"
+              animate={{ opacity: [0.2, 0.5, 0.2] }}
+              transition={{ duration: 2.2, repeat: Infinity }}
+            />
+          </motion.div>
+
+          {/* Mobile Panel */}
+          <motion.div
+            className="absolute bottom-8 right-8 w-24 h-16 bg-gradient-to-br from-orange-500/20 to-orange-600/30 border border-orange-400/50 rounded-lg backdrop-blur-sm"
+            initial={{ opacity: 0, x: 50, y: 50 }}
+            animate={{ 
+              opacity: 1, 
+              x: 0, 
+              // y: 0,
+              y: [0, -7, 0]
+            }}
+            transition={{ 
+              opacity: { delay: 1.6 },
+              x: { delay: 1.6 },
+              y: { delay: 1.6, y: { duration: 3.2, repeat: Infinity } }
+            }}
+          >
+            <div className="p-2 h-full flex flex-col items-center justify-center">
+              <Smartphone className="w-5 h-5 text-orange-400 mb-1" />
+              <span className="text-xs text-orange-300 font-mono">Mobile</span>
+            </div>
+            <motion.div
+              className="absolute -inset-0.5 bg-gradient-to-r from-orange-400 to-cyan-400 rounded-lg opacity-20"
+              animate={{ opacity: [0.2, 0.5, 0.2] }}
+              transition={{ duration: 1.8, repeat: Infinity }}
+            />
+          </motion.div>
+
+          {/* Holographic Connection Lines */}
+          <svg className="absolute inset-0 pointer-events-none" width="100%" height="100%">
+            <defs>
+              <linearGradient id="connectionGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#10b981" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge> 
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* Animated connection lines */}
+            <motion.line
+              x1="96" y1="80" x2="192" y2="192"
+              stroke="url(#connectionGlow)"
+              strokeWidth="2"
+              filter="url(#glow)"
+              strokeDasharray="4,4"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ 
+                pathLength: 1, 
+                opacity: [0, 1, 0],
+                strokeDashoffset: [0, -8]
+              }}
+              transition={{ 
+                pathLength: { duration: 2, delay: 2 },
+                opacity: { duration: 3, repeat: Infinity, delay: 2 },
+                strokeDashoffset: { duration: 1, repeat: Infinity, ease: "linear", delay: 2 }
+              }}
+            />
+            
+            <motion.line
+              x1="300" y1="80" x2="192" y2="192"
+              stroke="url(#connectionGlow)"
+              strokeWidth="2"
+              filter="url(#glow)"
+              strokeDasharray="4,4"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ 
+                pathLength: 1, 
+                opacity: [0, 1, 0],
+                strokeDashoffset: [0, -8]
+              }}
+              transition={{ 
+                pathLength: { duration: 2, delay: 2.3 },
+                opacity: { duration: 3, repeat: Infinity, delay: 2.3 },
+                strokeDashoffset: { duration: 1, repeat: Infinity, ease: "linear", delay: 2.3 }
+              }}
+            />
+            
+            <motion.line
+              x1="96" y1="312" x2="192" y2="192"
+              stroke="url(#connectionGlow)"
+              strokeWidth="2"
+              filter="url(#glow)"
+              strokeDasharray="4,4"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ 
+                pathLength: 1, 
+                opacity: [0, 1, 0],
+                strokeDashoffset: [0, -8]
+              }}
+              transition={{ 
+                pathLength: { duration: 2, delay: 2.6 },
+                opacity: { duration: 3, repeat: Infinity, delay: 2.6 },
+                strokeDashoffset: { duration: 1, repeat: Infinity, ease: "linear", delay: 2.6 }
+              }}
+            />
+            
+            <motion.line
+              x1="300" y1="312" x2="192" y2="192"
+              stroke="url(#connectionGlow)"
+              strokeWidth="2"
+              filter="url(#glow)"
+              strokeDasharray="4,4"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ 
+                pathLength: 1, 
+                opacity: [0, 1, 0],
+                strokeDashoffset: [0, -8]
+              }}
+              transition={{ 
+                pathLength: { duration: 2, delay: 2.9 },
+                opacity: { duration: 3, repeat: Infinity, delay: 2.9 },
+                strokeDashoffset: { duration: 1, repeat: Infinity, ease: "linear", delay: 2.9 }
+              }}
+            />
+          </svg>
+
+          {/* Floating Code Symbols */}
+          <motion.div
+            className="absolute top-20 left-1/2 transform -translate-x-1/2"
+            animate={{ 
+              y: [0, -10, 0],
+              rotate: [0, 5, -5, 0]
+            }}
+            transition={{ 
+              y: { duration: 4, repeat: Infinity },
+              rotate: { duration: 6, repeat: Infinity }
+            }}
+          >
+            <span className="text-2xl font-mono text-cyan-400 opacity-80">&lt;/&gt;</span>
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
+            animate={{ 
+              y: [0, 8, 0],
+              rotate: [0, -5, 5, 0]
+            }}
+            transition={{ 
+              y: { duration: 3.5, repeat: Infinity },
+              rotate: { duration: 5, repeat: Infinity }
+            }}
+          >
+            <span className="text-xl font-mono text-emerald-400 opacity-80">{'{}'}</span>
+          </motion.div>
+
+          {/* Holographic Particles */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-cyan-400 rounded-full"
+              style={{
+                left: `${20 + (i * 45)}%`,
+                top: `${30 + (i * 20) % 40}%`,
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
+                y: [0, -20, 0]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: i * 0.3,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+
+          {/* Outer Glow Effect */}
+          <motion.div
+            className="absolute -inset-4 rounded-3xl opacity-30"
+            style={{
+              background: "linear-gradient(45deg, transparent, rgba(6, 182, 212, 0.3), transparent, rgba(16, 185, 129, 0.3), transparent, rgba(139, 92, 246, 0.3), transparent)",
+              backgroundSize: "400% 400%",
+              filter: "blur(20px)"
+            }}
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        </motion.div>
+      </div>
+    );
+  };
+
+  return (
+    <section id="hero" className="min-h-screen flex items-center justify-center relative">
+      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+        {/* Left Side - Text Content */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-left"
+        >
+          <motion.h1 
+            className="text-6xl lg:text-6xl font-bold text-white mb-4"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            Saym Islam
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14A86B] to-[#118252] ml-4">
+              Jihad
+            </span>
+          </motion.h1>
+          
+          <motion.div 
+            className="text-2xl lg:text-3xl text-gray-300 mb-8 h-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <span className="font-mono">
+              {displayText}
+              <span className="animate-pulse text-cyan-400">|</span>
+            </span>
+          </motion.div>
+
+          <motion.p
+            className="text-lg text-gray-400 mb-8 max-w-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+          >
+            Crafting exceptional digital experiences with cutting-edge technologies 
+            and innovative solutions that bring ideas to life.
+          </motion.p>
+
+          <motion.div
+            className="flex gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+          >
+            <button className="interactive bg-gradient-to-r from-[#118252] to-emerald-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300">
+              View Projects
+            </button>
+            <button className="interactive border border-gray-600 text-white px-8 py-3 rounded-full font-semibold hover:border-[#118252] hover:text-[#118252] transition-all duration-300">
+              Download CV
+            </button>
+          </motion.div>
+        </motion.div>
+
+        {/* Right Side - Holographic Interface */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex justify-center"
+        >
+          <HolographicInterface />
+        </motion.div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5 }}
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="interactive cursor-pointer"
+          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          <ChevronDown className="w-8 h-8 text-gray-400 hover:text-cyan-400 transition-colors" />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+};
+
+export default HeroSection;
