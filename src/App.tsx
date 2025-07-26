@@ -7,15 +7,16 @@ import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
+import GitHubProfile from './components/GitHubProfile';
 
 function App() {
   useEffect(() => {
     // Smooth scrolling for the entire page
     document.documentElement.style.scrollBehavior = 'smooth';
-    
+
     // Hide default cursor
     document.body.style.cursor = 'none';
-    
+
     return () => {
       document.body.style.cursor = 'auto';
     };
@@ -27,10 +28,11 @@ function App() {
       <BackgroundElements />
       <Navigation />
       <SocialSidebar />
-      
+
       <main>
         <HeroSection />
         <AboutSection />
+        <GitHubProfile />
         <ProjectsSection />
         <ContactSection />
       </main>
