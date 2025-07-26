@@ -52,38 +52,39 @@ const GitHubProfile = () => {
 
 
 
- useEffect(() => {
-    const fetchGitHubData = async () => {
-      try {
-        setLoading(true)
+    useEffect(() => {
+        const fetchGitHubData = async () => {
+            try {
+                setLoading(true)
 
-        const headers = {
-          Authorization: `Bearer ${GITHUB_TOKEN}`,
+                const headers = {
+                    Authorization: `token ${GITHUB_TOKEN}`,
+                }
+
+
+                const userResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`, {
+                    headers,
+                })
+                if (!userResponse.ok) throw new Error('Failed to fetch user data')
+                const userData = await userResponse.json()
+                setUser(userData)
+
+                const reposResponse = await fetch(
+                    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`,
+                    { headers }
+                )
+                if (!reposResponse.ok) throw new Error('Failed to fetch repositories')
+                const reposData = await reposResponse.json()
+                setRepos(reposData)
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'An error occurred')
+            } finally {
+                setLoading(false)
+            }
         }
 
-        const userResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`, {
-          headers,
-        })
-        if (!userResponse.ok) throw new Error('Failed to fetch user data')
-        const userData = await userResponse.json()
-        setUser(userData)
-
-        const reposResponse = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`,
-          { headers }
-        )
-        if (!reposResponse.ok) throw new Error('Failed to fetch repositories')
-        const reposData = await reposResponse.json()
-        setRepos(reposData)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred')
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchGitHubData()
-  }, [])
+        fetchGitHubData()
+    }, [])
 
     const getLanguageColor = (language: string) => {
         const colors: { [key: string]: string } = {
@@ -300,12 +301,12 @@ const GitHubProfile = () => {
                         <motion.div
                             key={index}
                             className={`w-3 h-3 rounded-sm flex-shrink-0 ${level === 0
-                                    ? "bg-gray-800"
-                                    : level === 1
-                                        ? "bg-emerald-900/50"
-                                        : level === 2
-                                            ? "bg-emerald-700/70"
-                                            : "bg-emerald-500"
+                                ? "bg-gray-800"
+                                : level === 1
+                                    ? "bg-emerald-900/50"
+                                    : level === 2
+                                        ? "bg-emerald-700/70"
+                                        : "bg-emerald-500"
                                 }`}
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
